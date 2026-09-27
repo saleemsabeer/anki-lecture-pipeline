@@ -1,0 +1,59 @@
+deck: "Examples::Git basics"
+base_tag: examples
+phase_tag: git-basics
+apkg: git-basics.apkg
+description: "Example deck for yaml-deck-builder: one card of each type, a diagram with a blanked front, and a criteria table."
+min_per_criterion: 2
+criteria:
+  ac-1: "Explain the working directory, staging area and repository"
+  ac-2: "Undo mistakes safely"
+
+cards:
+  - id: ex-three-areas
+    type: cloze
+    text: "Changes move from the {{c1::working directory}} to the {{c2::staging area (index)}} with git add, into the {{c3::local repository}} with git commit, and to the remote with {{c4::git push}}."
+    diagram: git-areas
+    source: "Git reference — Git Basics"
+    tags: [ac-1, staging]
+    confidence: high
+  - id: ex-areas-blank
+    type: basic
+    front: "Fill in the six blanked commands (1)–(6)."
+    diagram_front: git-areas-blank
+    back: "(1) <code>git add</code> (2) <code>git commit</code> (3) <code>git push</code> (4) <code>git fetch</code> (5) <code>git pull</code> (6) <code>git restore --staged</code>"
+    diagram: git-areas
+    audio: summary
+    spoken_summary: "Front: fill in the six commands between the Git areas. Back: add, commit, push, fetch, pull, and restore staged."
+    source: "Git reference — Git Basics"
+    tags: [ac-1, staging, diagram]
+    confidence: high
+  - id: ex-index
+    type: basic_reversed
+    front: "staging area (index)"
+    back: "The snapshot that the next commit will contain; git add copies a file's current content into it."
+    source: "Git reference — gitglossary"
+    tags: [ac-1, staging]
+    confidence: high
+  - id: ex-undo-soft
+    type: command
+    front: "Undo the last commit but keep its changes staged"
+    back: "<code>git reset --soft HEAD~1</code>"
+    command: "git reset --soft HEAD~1"
+    command_plain: "git reset, soft, HEAD tilde one"
+    source: "Git reference — git-reset"
+    tags: [ac-2, undo, command]
+    confidence: high
+  - id: ex-scenario-unstage
+    type: scenario
+    front: "You ran <code>git add .</code> and it staged a large log file along with your change."
+    back: "<code>git restore --staged big.log</code>, add the pattern to <code>.gitignore</code>, then check <code>git diff --staged --stat</code> before committing."
+    source: "Git reference — git-restore, gitignore"
+    tags: [ac-2, staging, scenario]
+    confidence: high
+  - id: ex-why-lease
+    type: why
+    front: "Why prefer <code>--force-with-lease</code> over <code>--force</code>?"
+    back: "It refuses to overwrite the remote branch if someone pushed since you last fetched, so you cannot silently erase a teammate's commits."
+    source: "Git reference — git-push"
+    tags: [ac-2, force-push, why]
+    confidence: medium

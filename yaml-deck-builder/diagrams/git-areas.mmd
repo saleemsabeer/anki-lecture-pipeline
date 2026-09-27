@@ -1,0 +1,19 @@
+%%{init: {"flowchart": {"wrappingWidth": 210, "nodeSpacing": 40, "rankSpacing": 70}}}%%
+flowchart LR
+  W["<b>Working directory</b><br/>the files on disk you edit<br/><i>local (modified) changes</i>"]
+  S["<b>Staging area / index</b><br/>the snapshot queued for the next commit<br/><i>staged changes</i>"]
+  L["<b>Local repository</b><br/>.git — commits, branches, HEAD<br/><i>committed changes</i>"]
+  R["<b>Remote (origin)</b><br/>github.aexp.com<br/><i>pushed = shared</i>"]
+  W -->|"git add"| S
+  S -->|"git commit"| L
+  L -->|"git push"| R
+  R -.->|"git fetch"| L
+  R -.->|"git pull (= fetch + merge)"| W
+  L -.->|"git checkout / git restore"| W
+  S -.->|"git restore --staged (unstage)"| W
+  L -.->|"git reset HEAD~1 (undo commit)"| S
+  classDef wd fill:#1e3a5f,stroke:#7dd3fc,color:#ffffff;
+  classDef st fill:#2a1f4a,stroke:#c4b5fd,color:#ffffff;
+  classDef lr fill:#14532d,stroke:#86efac,color:#ffffff;
+  classDef rm fill:#7c2d12,stroke:#fdba74,color:#ffffff;
+  class W wd; class S st; class L lr; class R rm;

@@ -1,0 +1,27 @@
+# generated output
+dist/
+media/
+build-cache/
+work/
+backup/
+*.apkg
+*.mp3
+*.wav
+*.aiff
+*.mov
+*.mp4
+*.png
+*.jpg
+*.csv
+thumbs/
+full/
+cropped/
+
+# python / editors / os
+__pycache__/
+*.pyc
+.venv/
+venv/
+.DS_Store
+.vscode/
+.idea/

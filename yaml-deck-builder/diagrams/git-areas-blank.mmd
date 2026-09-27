@@ -1,0 +1,17 @@
+%%{init: {"flowchart": {"wrappingWidth": 210, "nodeSpacing": 40, "rankSpacing": 70}}}%%
+flowchart LR
+  W["<b>Working directory</b><br/><i>local changes</i>"]
+  S["<b>Staging area / index</b><br/><i>staged changes</i>"]
+  L["<b>Local repository</b><br/><i>committed changes</i>"]
+  R["<b>Remote (origin)</b>"]
+  W -->|"? (1)"| S
+  S -->|"? (2)"| L
+  L -->|"? (3)"| R
+  R -.->|"? (4)"| L
+  R -.->|"? (5) = (4) + merge"| W
+  S -.->|"? (6) (unstage, keep edits)"| W
+  classDef wd fill:#1e3a5f,stroke:#7dd3fc,color:#ffffff;
+  classDef st fill:#2a1f4a,stroke:#c4b5fd,color:#ffffff;
+  classDef lr fill:#14532d,stroke:#86efac,color:#ffffff;
+  classDef rm fill:#7c2d12,stroke:#fdba74,color:#ffffff;
+  class W wd; class S st; class L lr; class R rm;
